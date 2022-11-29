@@ -61,21 +61,30 @@
     <script>
         const mainContent = document.querySelector(".mainContent");
         mainContent.addEventListener("mouseover", () => {
+
             const timechip = document.getElementById("timechip");
+            timechip.classList.add("active");
+
+            time();
+            setInterval(() => {
+                time();
+            }, 1000);
+
+        });
+
+        mainContent.addEventListener("mouseout", () => {
+            const timechip = document.getElementById("timechip");
+            timechip.classList.remove("active");
+        });
+
+        function time() {
             const now = new Date();
             let hour = now.getHours();
             let minutes = now.getMinutes();
             let Seconds = now.getSeconds();
-            timechip.innerText = `現在の時刻 ${hour}:${minutes}:${Seconds}`;
-            timechip.classList.add("active");
-            console.log(`${hour}:${minutes}:${Seconds}`);
-        });
 
-        mainContent.addEventListener("mouseout", () => {
-            console.log("mouseout");
-            const timechip = document.getElementById("timechip");
-            timechip.classList.remove("active");
-        });
+            timechip.innerText = `現在の時刻 ${hour}:${minutes}:${Seconds}`;
+        }
 
     </script>
 </body>
